@@ -32,8 +32,8 @@ mkdir -p $CNI_NETCONF_DIR
 if [ ! -e /sbin/ebtables ]
 then
     printf "Installing ebtables package..."
-    apt-get update
-    apt-get install -y ebtables
+    yum update
+    yum install -y ebtables
     printf "done.\n"
 else
     echo "Package ebtables is already installed."
@@ -48,6 +48,7 @@ printf "done.\n"
 
 # Install azure-vnet CNI network configuration file.
 printf "Installing azure-vnet CNI network configuration file to $CNI_NETCONF_DIR..."
+cp /opt/cni/bin/10-azure.conflist /opt/cni/bin/10-azure.conf
 mv $CNI_BIN_DIR/*.conf $CNI_NETCONF_DIR
 printf "done.\n"
 
